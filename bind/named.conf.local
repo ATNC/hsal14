@@ -1,0 +1,5 @@
+// named.conf.local
+zone "mycdn.local" IN {
+    type master;
+    file "/etc/bind/db.localdns.local";  // Path to the zone file
+};

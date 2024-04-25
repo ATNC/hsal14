@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  bind-server:
+    image: internetsystemsconsortium/bind9:9.19
+    volumes:
+      - ./bind:/etc/bind
+    ports:
+    - "5454:53"
+    - "5454:53/udp"
+    restart: unless-stopped
+
+  load-balancer-1:
+    image: nginx:latest
+    volumes:
+      - ./nginx/nginx-lb1.conf:/etc/nginx/nginx.conf
+    ports:
+      - "8001:80"
+    depends_on:
+      - node1
+      - node2
+    restart: unless-stopped
+
+  load-balancer-2:
+    image: nginx:latest
+    volumes:
+      - ./nginx/nginx-lb2.conf:/etc/nginx/nginx.conf
+    ports:
+      - "8002:80"
+    depends_on:
+      - node3
+      - node4
+    restart: unless-stopped
+
+  node1:
+    image: nginx:latest
+    volumes:
+      - ./content/node1:/usr/share/nginx/html
+    restart: unless-stopped
+
+  node2:
+    image: nginx:latest
+    volumes:
+      - ./content/node2:/usr/share/nginx/html
+    restart: unless-stopped
+
+  node3:
+    image: nginx:latest
+    volumes:
+      - ./content/node3:/usr/share/nginx/html
+    restart: unless-stopped
+
+  node4:
+    image: nginx:latest
+    volumes:
+      - ./content/node4:/usr/share/nginx/html
+    restart: unless-stopped

@@ -1,0 +1,3 @@
+127.0.0.1       mycdn.local
+127.0.0.1       lb1.mycdn.local lb2.mycdn.local
+127.0.0.1       node1.mycdn.local node2.mycdn.local node3.mycdn.local node4.mycdn.local

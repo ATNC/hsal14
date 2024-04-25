@@ -1,0 +1,18 @@
+$TTL    604800
+@       IN      SOA     localdns.local. admin.localdns.local. (
+                              3         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@       IN      NS      localdns.local.
+@       IN      A       127.0.0.1  ; IP of your DNS server, usually localhost
+lb1     IN      A       127.0.0.1  ; IP of load balancer 1
+lb2     IN      A       127.0.0.1  ; IP of load balancer 2
+
+; Define content nodes
+node1   IN      A       127.0.0.1
+node2   IN      A       127.0.0.1
+node3   IN      A       127.0.0.1
+node4   IN      A       127.0.0.1
